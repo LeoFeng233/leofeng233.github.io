@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="重新学习Maven，顺便记录一下自己的收获。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven笔记">
+<meta property="og:url" content="http://yoursite.com/2020/05/27/Java/Maven/Maven%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="菜鸟博客">
+<meta property="og:description" content="重新学习Maven，顺便记录一下自己的收获。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-26T16:48:29.000Z">
+<meta property="article:modified_time" content="2020-05-26T16:48:29.000Z">
+<meta property="article:author" content="Leo feng">
+<meta property="article:tag" content="Maven">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/27/Java/Maven/Maven%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Maven笔记 | 菜鸟博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">菜鸟博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">此时，一只菜鸟悄无声息地飞过</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/27/Java/Maven/Maven%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo feng">
+      <meta itemprop="description" content="May the Force be with you">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸟博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Maven笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-27 00:48:29" itemprop="dateCreated datePublished" datetime="2020-05-27T00:48:29+08:00">2020-05-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Maven/" itemprop="url" rel="index"><span itemprop="name">Maven</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>重新学习<code>Maven</code>，顺便记录一下自己的收获。</p>
+<a id="more"></a>
+
+<h3 id="1-Maven是什么？"><a href="#1-Maven是什么？" class="headerlink" title="1. Maven是什么？"></a>1. <code>Maven</code>是什么？</h3><p>在百度搜索 </p>
+<blockquote>
+<p><strong><code>Maven</code></strong> 是什么？</p>
+</blockquote>
+<p>在<code>Maven</code>的<a href="https://baike.baidu.com/item/Maven/6094909?fr=aladdin" target="_blank" rel="noopener">百度百科</a>里是这么描述的:</p>
+<blockquote>
+<p>Maven项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的项目管理工具软件。</p>
+</blockquote>
+<p>emmmmmmmmmm，尴尬…这段信息，我只看懂了最后面几个字-<strong>项目管理工具</strong>，但是，在目前的使用中，我一直都是把它当作一个<strong>项目构建工具</strong>，就是通过在<code>pom.xml</code>中修改依赖，让<code>Maven</code>自动帮我下载各种<code>jar</code>包，所以，在目前这个阶段，我就理解<code>Maven</code>是用来下载各种<code>jar</code>包的<strong>项目构建工具</strong>。</p>
+<h3 id="2-为什么要用Maven"><a href="#2-为什么要用Maven" class="headerlink" title="2. 为什么要用Maven?"></a>2. 为什么要用<code>Maven</code>?</h3><p>这个问题似乎两个字就可以回答了，<strong>好用</strong>！但是，新的问题出现了，它为什么好用？说来话长。一切还要从<code>jvm</code>讲起。</p>
+<h4 id="2-1-jvm完成了哪些工作？"><a href="#2-1-jvm完成了哪些工作？" class="headerlink" title="2.1. jvm完成了哪些工作？"></a>2.1. <code>jvm</code>完成了哪些工作？</h4><p><code>JVM</code>，全程<code>Java Virtual Machine</code>，顾名思义，它是一个虚拟机，它负责执行编译产物<code>.class</code>文件。在执行的过程中，如果发现未曾使用过的类，<code>JVM</code>会先去读取并加载这个类，然后再去执行。</p>
+<h4 id="2-2-JVM从何处读取新的类"><a href="#2-2-JVM从何处读取新的类" class="headerlink" title="2.2. JVM从何处读取新的类"></a>2.2. <code>JVM</code>从何处读取新的类</h4><p>当使用命令行运行<code>Java</code>代码时，总是要使用<code>-classpath</code>参数指定类的路径，在Idea中写了一段<code>Hello World</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>IDEA</code>中运行时，输出中会有以下信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"C:\Program Files\Java\jdk-11.0.7\bin\java.exe"</span> </span><br><span class="line">-javaagent:C:\Users\55393\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\201.7223.91\lib\idea_rt.jar=58484:C:\Users\55393\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\201.7223.91\bin -Dfile.encoding=UTF-8 </span><br><span class="line">-classpath C:\Users\55393\IdeaProjects\MavenDemo\target\classes HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，在运行这段代码的时候，<code>IDEA</code>自动地用<code>-classpath</code>参数指定了项目目录下<code>target\classes</code>的文件夹，于是，<code>JVM</code>在执行这段代码的时候就会从<code>target\classes</code>目录下去找这个类。</p>
+<p>这时，我在这个<code>Maven</code>项目中引入了一个<code>spring-boot</code>的<code>jar</code>包。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>再次运行上面的代码 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"C:\Program Files\Java\jdk-11.0.7\bin\java.exe"</span> </span><br><span class="line">-javaagent:C:\Users\55393\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\201.7223.91\lib\idea_rt.jar=63376:C:\Users\55393\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\201.7223.91\bin -Dfile.encoding=UTF-8 -classpath E:\MyRepository\Code\IdeaProjects\MavenDemo\target\classes;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\boot\spring-boot-starter\2.3.0.RELEASE\spring-boot-starter-2.3.0.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\boot\spring-boot\2.3.0.RELEASE\spring-boot-2.3.0.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\spring-context\5.2.6.RELEASE\spring-context-5.2.6.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\spring-aop\5.2.6.RELEASE\spring-aop-5.2.6.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\spring-beans\5.2.6.RELEASE\spring-beans-5.2.6.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\spring-expression\5.2.6.RELEASE\spring-expression-5.2.6.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\boot\spring-boot-autoconfigure\2.3.0.RELEASE\spring-boot-autoconfigure-2.3.0.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\boot\spring-boot-starter-logging\2.3.0.RELEASE\spring-boot-starter-logging-2.3.0.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\apache\logging\log4j\log4j-to-slf4j\2.13.2\log4j-to-slf4j-2.13.2.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\apache\logging\log4j\log4j-api\2.13.2\log4j-api-2.13.2.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\slf4j\jul-to-slf4j\1.7.30\jul-to-slf4j-1.7.30.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\spring-core\5.2.6.RELEASE\spring-core-5.2.6.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\springframework\spring-jcl\5.2.6.RELEASE\spring-jcl-5.2.6.RELEASE.jar;</span><br><span class="line">E:\MyRepository\Maven\LocalRepository\org\yaml\snakeyaml\1.26\snakeyaml-1.26.jar HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p>只导入了一个<code>jar</code>包，为什么<code>-classpath</code>会多了这么多参数？这是因为，导入的<code>spring-boot-starter</code>这个包的代码实现上有很多依赖，当<code>spring-boot-starter</code>被使用时，必须将它依赖的所有包都导入，而被<code>spring-boot-starter</code>依赖的包也可能依赖许多其它的<code>jar</code>包，而其也会被一并导入，这样就造成了，虽然只是手动导入了一个包，但是实际上却导入了不止一个包的情况。</p>
+<p>这种A包依赖了B包，B包依赖了C包，而导致在导入A包时，B包，C包被一起导入的情况称作<strong>传递依赖</strong>。</p>
+<p>在以前没有任何构建工具的时候，开发者们都是通过手写<code>-classpath</code>参数来编译运行代码的。想想真是让人头大，于是，后来出现了<code>apache ant</code>的构建工具，开发者需要手动到各种官网下载<code>jar</code>包，然后写一堆<code>xml</code>指定源码路径，以及编译的输出路径，起到简化流程的作用（应该是这样吧……）。但是，这个工具还是有问题，如果漏了<code>jar</code>包，还是很麻烦。</p>
+<p>于是，<code>Maven</code>出现了，只需少量的代码，就能自动将需要的<code>jar</code>包，以及被依赖的<code>jar</code>包自动下载下来并导入。一站式服务，非常贴心。</p>
+<h3 id="3-Maven的约定"><a href="#3-Maven的约定" class="headerlink" title="3. Maven的约定"></a>3. <code>Maven</code>的约定</h3><h4 id="3-1-项目目录结构"><a href="#3-1-项目目录结构" class="headerlink" title="3.1 项目目录结构"></a>3.1 项目目录结构</h4><p>为了更好地复用其他人的代码，或者使其他人复用自己的代码，<code>Maven</code>约定了一套项目目录。</p>
+<ul>
+<li><code>src</code><ul>
+<li><code>main</code><ul>
+<li><code>java</code>：存放项目代码</li>
+<li><code>resources</code>：项目资源文件</li>
+</ul>
+</li>
+<li><code>test</code><ul>
+<li><code>java</code>：测试代码文件夹</li>
+<li><code>resources</code>：测试资源文件夹</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>pom.xml</code></li>
+</ul>
+<h4 id="3-2-包的命名"><a href="#3-2-包的命名" class="headerlink" title="3.2 包的命名"></a>3.2 包的命名</h4><p><code>Maven</code>有一个<strong>中央仓库</strong>，它存储着绝大多数的<code>jar</code>包，需要的时候就从中央仓库下载。为了对需要的<code>jar</code>包进行定位，需要对所有包进行编号。所有的包都要有以下属性</p>
+<ul>
+<li><code>groupId</code>：项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构</li>
+<li><code>artifactId</code>：项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称</li>
+<li><code>version</code>：包的版本号。</li>
+</ul>
+<p>当需要某个<code>jar</code>包时，<code>Maven</code>会根据<code>groupId/artifactId/version</code>的格式在中央仓库中定位。例如，从<code>Maven</code>中央仓库中访问<code>spring-boot-starter</code>这个包2.3版本的资源时，应该访问<a href="`https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter/2.3.0.RELEASE/`">https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter/2.3.0.RELEASE/</a>，正如前面在引入这个包的时候，也有<code>groupId/artifactId/version</code>等属性，这样才能准确定位一个包。</p>
+<h4 id="3-3-Maven还有本地仓库"><a href="#3-3-Maven还有本地仓库" class="headerlink" title="3.3 Maven还有本地仓库"></a>3.3 <code>Maven</code>还有本地仓库</h4><p>当在<code>Maven</code>项目中引入一个依赖时，<code>Maven</code>会在本地仓库寻找对应的<code>jar</code>包，如果没有才会去中央仓库中寻找这个包，找到之后会下载到本地仓库中，以便断网之后还能继续使用。</p>
+<h3 id="4-Maven解决冲突"><a href="#4-Maven解决冲突" class="headerlink" title="4. Maven解决冲突"></a>4. <code>Maven</code>解决冲突</h3><p>当在项目中引入不同的<code>jar</code>包，而这些<code>jar</code>包有出现了传递依赖的现象，以至于，这些依赖的<code>jar</code>包中有可能会出现同名包的不同版本，这些同名包的不同版本就出现了冲突，这些不同版本的<code>jar</code>包对于<code>api</code>的定义和实现可能会有出入，导致项目出现bug。</p>
+<h4 id="4-1-同样的包不允许出现在-classpath两次"><a href="#4-1-同样的包不允许出现在-classpath两次" class="headerlink" title="4.1 同样的包不允许出现在-classpath两次"></a>4.1 同样的包不允许出现在<code>-classpath</code>两次</h4><p>当项目依赖中出现了同名包的不同版本，<code>Maven</code>只会留下其中一个，因为<code>JVM</code>在根据类的全限定名找到一个类时，就不会再继续在后面的参数中去寻找这个类了，这也是造成冲突的根本原因。</p>
+<h4 id="4-2-Maven如何处理冲突"><a href="#4-2-Maven如何处理冲突" class="headerlink" title="4.2 Maven如何处理冲突"></a>4.2 <code>Maven</code>如何处理冲突</h4><p><code>Maven</code>会根据<code>jar</code>包的距离项目的路径长度来决定留下哪个包。例如，某个项目中引入了<strong>A包</strong>和<strong>E包</strong>，它们都依赖了<strong>C包</strong>。这两个包各自的依赖为:</p>
+<ul>
+<li>A:0.1<ul>
+<li>B:0.1<ul>
+<li>C:0.2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>E:0.1<ul>
+<li>C:0.1</li>
+</ul>
+</li>
+</ul>
+<p>项目引用<code>C:0.2</code>包经历了三级依赖，引用<code>C:0.1</code>包经历了二级依赖，由于引用<code>C:0.1</code>包的路径更短，所以，<code>Maven</code>在处理这个冲突时，会留下<code>C:0.1</code>包，去掉<code>C:0.2</code>包。</p>
+<p>还有一种情况是，冲突的包距离项目的路径长度相同，这种情况下，会留下更早引入的包。还是前面的例子，但是如果依赖关系变成了这样:</p>
+<ul>
+<li>A:0.1<ul>
+<li>C:0.1</li>
+</ul>
+</li>
+<li>E:0.1<ul>
+<li>C:0.2</li>
+</ul>
+</li>
+</ul>
+<p>项目引用<code>C:0.1</code>和<code>C:0.2</code>都经历了二级依赖，距离项目的路径相同，这时候，由于项目引用<code>A:0.1</code>在<code>E:0.1</code>之前，所以<code>Maven</code>会留下<code>C:0.1</code>包，去掉<code>C:0.2</code>包。</p>
+<h4 id="4-3-手动处理冲突"><a href="#4-3-手动处理冲突" class="headerlink" title="4.3 手动处理冲突"></a>4.3 手动处理冲突</h4><p><code>Maven</code>默认的处理冲突的方式有可能会引起很多问题，例如在前面提到的例子中，<code>Maven</code>把是新版本，但是项目依赖路径较长的包给干掉了，这就可能导致一些已经在使用中的，而且是发布在新版本中的<code>api</code>无法使用了，从而导致出现了bug。所以在这个时候，就需要手动处理依赖冲突。</p>
+<p>手动处理依赖冲突有两种方法：</p>
+<h5 id="4-3-1-直接在项目中引用有争议的依赖"><a href="#4-3-1-直接在项目中引用有争议的依赖" class="headerlink" title="4.3.1 直接在项目中引用有争议的依赖"></a>4.3.1 直接在项目中引用有争议的依赖</h5><p>直接在项目中引用依赖，那么依赖的路径必定是短于其它的传递依赖的，所以，其它的有争议的依赖版本就会被<code>Maven</code>自动屏蔽。同样是上面提到的例子，依赖关系为:</p>
+<ul>
+<li>A:0.1<ul>
+<li>B:0.1<ul>
+<li>C:0.2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>E:0.1<ul>
+<li>C:0.1</li>
+</ul>
+</li>
+</ul>
+<p><strong>C包</strong>的版本有了争议，这时，可以直接在项目中引用C包，使得项目直接依赖：</p>
+<ul>
+<li>A:0.1</li>
+<li>E:0.1</li>
+<li>C:0.2</li>
+</ul>
+<p>此时，<code>Maven</code>就会干掉被<strong>A包</strong>和<strong>E包</strong>传递依赖的<code>C:0.1</code>包和<code>C:0.2</code>，只留下项目直接依赖的<code>C:0.2</code>：</p>
+<ul>
+<li>A:0.1<ul>
+<li>B:0.1<ul>
+<li><del>C:0.2</del></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>E:0.1<ul>
+<li><del>C:0.1</del></li>
+</ul>
+</li>
+<li>C:0.2</li>
+</ul>
+<h5 id="4-3-2-去掉不需要的循环依赖"><a href="#4-3-2-去掉不需要的循环依赖" class="headerlink" title="4.3.2 去掉不需要的循环依赖"></a>4.3.2 去掉不需要的循环依赖</h5><p>通过手动配置来告诉<code>Maven</code>，将传递依赖去掉，来避免依赖冲突。举个例子，有依赖关系如：</p>
+<ul>
+<li>A:0.1<ul>
+<li>B:0.1<ul>
+<li>C:0.2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>E:0.1<ul>
+<li>C:0.1</li>
+</ul>
+</li>
+</ul>
+<p>在引入依赖<strong>E包</strong>的时候，手动去掉<code>C:0.1</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>library<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>E<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>library<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>C<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这时，<code>Maven</code>在引入<strong>E包</strong>的时候就不会引入<strong>C包</strong>了，依赖关系就会变成：</p>
+<ul>
+<li>A:0.1<ul>
+<li>B:0.1<ul>
+<li>C:0.2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>E:0.1<ul>
+<li><del>C:0.1</del></li>
+</ul>
+</li>
+</ul>
+<h3 id="5-依赖作用范围"><a href="#5-依赖作用范围" class="headerlink" title="5. 依赖作用范围"></a>5. 依赖作用范围</h3><p>在引入依赖的时候可以通过加入一对<code>&lt;scope&gt;&lt;scope/&gt;</code>标签限制依赖的作用范围，依赖作用范围主要是以下三种:</p>
+<ol>
+<li><code>test</code>：将作用范围限制在测试代码中，正常的项目代码无法使用。</li>
+<li><code>provided</code>：可以在测试或者项目代码中使用，但是仅能在编译中使用，无法在项目运行时使用。</li>
+<li><code>compile</code>：可以在测试或者项目代码中使用，也可以在编译或运行中使用</li>
+</ol>
+<p>以上，就是这一篇笔记的全部内容。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Maven/" rel="tag"># Maven</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/31/Java/Maven/%E6%88%91%E7%9A%84Maven%E9%85%8D%E7%BD%AE/" rel="next" title="我的Maven配置">
+      我的Maven配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Maven是什么？"><span class="nav-number">1.</span> <span class="nav-text">1. Maven是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-为什么要用Maven"><span class="nav-number">2.</span> <span class="nav-text">2. 为什么要用Maven?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-jvm完成了哪些工作？"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. jvm完成了哪些工作？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-JVM从何处读取新的类"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. JVM从何处读取新的类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Maven的约定"><span class="nav-number">3.</span> <span class="nav-text">3. Maven的约定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-项目目录结构"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 项目目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-包的命名"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 包的命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-Maven还有本地仓库"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Maven还有本地仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Maven解决冲突"><span class="nav-number">4.</span> <span class="nav-text">4. Maven解决冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-同样的包不允许出现在-classpath两次"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 同样的包不允许出现在-classpath两次</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-Maven如何处理冲突"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Maven如何处理冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-手动处理冲突"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 手动处理冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-1-直接在项目中引用有争议的依赖"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 直接在项目中引用有争议的依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-2-去掉不需要的循环依赖"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 去掉不需要的循环依赖</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-依赖作用范围"><span class="nav-number">5.</span> <span class="nav-text">5. 依赖作用范围</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Leo feng</p>
+  <div class="site-description" itemprop="description">May the Force be with you</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo feng</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">11k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
